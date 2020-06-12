@@ -9,7 +9,7 @@ AppRegistry.registerComponent(appName, () => App);
 */
 import {name as appName} from './app.json';
 import React, { PureComponent } from "react";
-import { AppRegistry, StyleSheet, StatusBar } from "react-native";
+import { AppRegistry, StyleSheet, StatusBar, Button } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import { Finger } from "./renderers";
 import { MoveFinger } from "./systems"
@@ -21,21 +21,33 @@ export default class BestGameEver extends PureComponent {
  
   render() {
     return (
-      <GameEngine
-        style={styles.container}
-        systems={[MoveFinger]}
-        entities={{
-          1: { position: [40,  200], renderer: <Finger />}, //-- Notice that each entity has a unique id (required)
-          2: { position: [100, 200], renderer: <Finger />}, //-- and a renderer property (optional). If no renderer
-          3: { position: [160, 200], renderer: <Finger />}, //-- is supplied with the entity - it won't get displayed.
-          4: { position: [220, 200], renderer: <Finger />},
-          5: { position: [280, 200], renderer: <Finger />}
-        }}>
- 
-        <StatusBar hidden={true} />
- 
-      </GameEngine>
+      <>
+        <Button title = "Reset Game" onPress = {this.reset} />
+        <GameEngine
+          ref={(ref) => {this.engine = ref}}
+          style={styles.container}
+          systems={[MoveFinger]}
+          entities={{
+            1: { position: [40,  200], renderer: <Finger />}, //-- Notice that each entity has a unique id (required)
+            2: { position: [100, 200], renderer: <Finger />}, //-- and a renderer property (optional). If no renderer
+            3: { position: [160, 200], renderer: <Finger />}, //-- is supplied with the entity - it won't get displayed.
+            4: { position: [220, 200], renderer: <Finger />}
+          }}>
+  
+          <StatusBar hidden={false} />
+  
+        </GameEngine>
+      </>
     );
+  }
+
+  reset = () => {
+    this.engine.swap({
+      1: { position: [40,  200], renderer: <Finger />},
+      2: { position: [100, 200], renderer: <Finger />},
+      3: { position: [160, 200], renderer: <Finger />},
+      4: { position: [220, 200], renderer: <Finger />}
+    })
   }
 }
  
