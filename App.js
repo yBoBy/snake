@@ -17,7 +17,7 @@ import Head from './Head';
 import { SnakeEngine } from './SnakeEngine';
 import { GameLoop } from './GameLoop';
 import { GameEngine } from 'react-native-game-engine';
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 
 
 
@@ -26,10 +26,10 @@ import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 
 function MainMenu({ navigation }) {
-  let Image_Http_URL ={};
+  let Image_Http_URL = {};
   return (
     <View style={{ width: '100%', justifyContent: "center", }}>
-      <Image source={require('./images/MainMenu/snake.gif')} style = {{height: 300, width: 300, alignSelf: "center", margin: 5 }} />
+      <Image source={require('./images/MainMenu/snake.gif')} style={{ height: 300, width: 300, alignSelf: "center", margin: 5 }} />
       <Button
         title="Start a New Game"
         onPress={() => navigation.navigate(' ')}
@@ -45,21 +45,49 @@ function MainMenu({ navigation }) {
 function GameScreen({ navigation }) {
 
 
-    /*
-    function onSwipeUp(gestureState){
-      setSpeed({0, -1});
-    }*/
-    let sum = (a,b) => {
-      return a+b;
-    };
+  /*
+  function onSwipeUp(gestureState){
+    setSpeed({0, -1});
+  }*/
+  let sum = (a, b) => {
+    return a + b;
+  };
+  /*
+      onSwipeRight = (state) =>{
+        console.log("Huhu");
+      };
+  */
+
+  const config = {
+    velocityThreshold: 0.3,
+    directionalOffsetThreshold: 80
+  };
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={styles.MainMenuButtonText} >
-        {`Placeholder for ${sum(100,100)} Games`}
-      </Text>
-      <SnakeEngine />
-    </View>
+    <>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={styles.MainMenuButtonText} >
+          {`Placeholder for ${sum(100, 100)} Games`}
+        </Text>
+        <SnakeEngine />
+      </View>
+      <GestureRecognizer
+        onSwipeRight={() => console.log("Right")}
+        onSwipeLeft={() => console.log("Left")}
+        config={config}
+        style={{
+          flex: 1,
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          opacity: 0
+        }}
+      >
+
+      </GestureRecognizer>
+    </>
   );
 }
 
@@ -89,7 +117,7 @@ function MyStack() {
 const styles = StyleSheet.create({
   MainMenuButtonText: {
     fontFamily: "Cochin",
-    textAlign:"auto"
+    textAlign: "auto"
   },
 });
 
