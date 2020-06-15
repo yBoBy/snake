@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import {
   Button,
   View,
@@ -16,12 +17,12 @@ import { GameEngine } from 'react-native-game-engine';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 
-const [speed, setSpeed] = useState({ xSpeed: 0, ySpeed: 0,});
 
 
+/*
 onSwipeUp(gestureState){
   setSpeed(0, -1);
-}
+}*/
 
 
 function MainMenu({ navigation }) {
@@ -44,7 +45,7 @@ function MainMenu({ navigation }) {
 function GameScreen({ navigation }) {
     let boardSize = Constants.GRID_SIZE * Constants.CELL_SIZE;
     let engine = null;
-
+    const [speed, setSpeed] = useState({ xSpeed: 0, ySpeed: 0,});
     let sum = (a,b) => {
       return a+b;
     };
