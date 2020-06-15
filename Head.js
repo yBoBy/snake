@@ -13,8 +13,8 @@ export default class Head extends Component{
 
         return (
             <View style={{
-                width: this.props.size,
-                height: this.props.size,
+                width: this.props.size/2,
+                height: this.props.size/2,
                 backgroundColor: Constants.colorSnakeHead,
                 position: 'absolute',
                 left: x * this.props.size,
