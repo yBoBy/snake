@@ -9,6 +9,20 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { block } from 'react-native-reanimated';
+import Constants from './Constants';
+import Head from './Head';
+import { GameLoop } from './GameLoop';
+import { GameEngine } from 'react-native-game-engine';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+
+
+const [speed, setSpeed] = useState({ xSpeed: 0, ySpeed: 0,});
+
+
+onSwipeUp(gestureState){
+  setSpeed(0, -1);
+}
+
 
 function MainMenu({ navigation }) {
   let Image_Http_URL ={};
@@ -28,11 +42,27 @@ function MainMenu({ navigation }) {
 }
 
 function GameScreen({ navigation }) {
+    let boardSize = Constants.GRID_SIZE * Constants.CELL_SIZE;
+    let engine = null;
+
+    let sum = (a,b) => {
+      return a+b;
+    };
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={styles.MainMenuButtonText} >
-        {"Placeholder for Game"}
+        {`Placeholder for ${sum(100,100)} Games`}
       </Text>
+      <GameEngine 
+          ref={(ref) => { engine = ref} }
+          style={{ width: boardSize, height: boardSize, flex: null, backgroundColor: '#ffffff'}}
+          systems={[ GameLoop ]}
+          entities={{
+            head: { position: [0,5], speed: speed ,size: Constants.CELL_SIZE, renderer: <Head />}
+          }}
+          
+      />
     </View>
   );
 }
@@ -52,7 +82,7 @@ const Stack = createStackNavigator();
 
 function MyStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Main Menu">
       <Stack.Screen name="Main Menu" component={MainMenu} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name=" " component={GameScreen} />
