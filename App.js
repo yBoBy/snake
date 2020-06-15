@@ -1,3 +1,5 @@
+"use strict";
+
 import * as React from 'react';
 import { useState } from 'react';
 import {
@@ -12,6 +14,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { block } from 'react-native-reanimated';
 import Constants from './Constants';
 import Head from './Head';
+import { SnakeEngine } from './SnakeEngine';
 import { GameLoop } from './GameLoop';
 import { GameEngine } from 'react-native-game-engine';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
@@ -19,10 +22,7 @@ import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 
 
-/*
-onSwipeUp(gestureState){
-  setSpeed(0, -1);
-}*/
+
 
 
 function MainMenu({ navigation }) {
@@ -43,9 +43,12 @@ function MainMenu({ navigation }) {
 }
 
 function GameScreen({ navigation }) {
-    let boardSize = Constants.GRID_SIZE * Constants.CELL_SIZE;
-    let engine = null;
-    const [speed, setSpeed] = useState({ xSpeed: 0, ySpeed: 0,});
+
+
+    /*
+    function onSwipeUp(gestureState){
+      setSpeed({0, -1});
+    }*/
     let sum = (a,b) => {
       return a+b;
     };
@@ -55,15 +58,7 @@ function GameScreen({ navigation }) {
       <Text style={styles.MainMenuButtonText} >
         {`Placeholder for ${sum(100,100)} Games`}
       </Text>
-      <GameEngine 
-          ref={(ref) => { engine = ref} }
-          style={{ width: boardSize, height: boardSize, flex: null, backgroundColor: Constants.colorGridBackGround}}
-          systems={[ GameLoop ]}
-          entities={{
-            head: { position: [0,5], speed: speed ,size: Constants.CELL_SIZE, renderer: <Head />}
-          }}
-          
-      />
+      <SnakeEngine />
     </View>
   );
 }
