@@ -57,7 +57,7 @@ function GameScreen({ navigation }) {
       </Text>
       <GameEngine 
           ref={(ref) => { engine = ref} }
-          style={{ width: boardSize, height: boardSize, flex: null, backgroundColor: '#ffffff'}}
+          style={{ width: boardSize, height: boardSize, flex: null, backgroundColor: Constants.colorGridBackGround}}
           systems={[ GameLoop ]}
           entities={{
             head: { position: [0,5], speed: speed ,size: Constants.CELL_SIZE, renderer: <Head />}

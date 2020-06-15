@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import Constants from './Constants';
 
 
 export default class Head extends Component{
@@ -14,7 +15,7 @@ export default class Head extends Component{
             <View style={{
                 width: this.props.size,
                 height: this.props.size,
-                backgroundColor: 'red',
+                backgroundColor: Constants.colorSnakeHead,
                 position: 'absolute',
                 left: x * this.props.size,
                 top: y * this.props.size
