@@ -2,28 +2,41 @@ import Constants from './Constants';
 
 
 const GameLoop = (entities, { touches, dispatch, events }) => {
+    let head = entities.head;
+    
 
-
-
-    console.log("Test");
-    //touches.touchPress()
-    touches.filter(t => t.type === "start").forEach(t => {
-        //console.log(t.delta.pageX);
-
-        let head = entities.head;
-        head.position = [
-            head.position[0] + 1,
-            head.position[1] + 1
-        ];
-    });
-
-    touches.filter(t => t.type === "move").forEach(t => {
-        /*console.log("PageX: " + t.delta.pageX);
-        console.log("PageY: " + t.delta.pageY);
-        console.log("LocationX: " + t.delta.locationX);
-        console.log("LocationY: " + t.delta.locationY);
-        console.log("Timestamp: " + t.delta.timestamp);*/
-    });
+    if(events.length){
+        for(e of events){
+            if(e.type === "right"){
+                head.xSpeed = 1;
+                head.ySpeed = 0;
+            }
+            else if (e.type === "left"){
+                head.xSpeed = -1;
+                head.ySpeed = 0;
+            }
+            else if (e.type === "up"){
+                head.xSpeed = 0;
+                head.ySpeed = -1;
+            }
+            else if (e.type === "down"){
+                head.xSpeed = 0;
+                head.ySpeed = 1;
+            }
+        }
+    }
+    
+    
+    for(let i=0;i<=10;i++){
+        if(i === 10){
+                        
+            head.position = [
+                head.position[0] + head.xSpeed,
+                head.position[1] + head.ySpeed
+            ];
+            console.log("Tick")
+        }
+    }
 
     return entities;   
 }

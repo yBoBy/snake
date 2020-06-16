@@ -44,54 +44,20 @@ function MainMenu({ navigation }) {
 
 function GameScreen({ navigation }) {
 
-
-  /*
-  function onSwipeUp(gestureState){
-    setSpeed({0, -1});
-  }*/
-  let sum = (a, b) => {
-    return a + b;
-  };
-  /*
-      onSwipeRight = (state) =>{
-        console.log("Huhu");
-      };
-  */
-
-  const config = {
-    velocityThreshold: 0.3,
-    directionalOffsetThreshold: 80
-  };
-
   return (
     <>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text style={styles.MainMenuButtonText} >
-          {`Placeholder for ${sum(100, 100)} Games`}
+          {`Placeholder for Games`}
         </Text>
         <SnakeEngine />
       </View>
-      <GestureRecognizer
-        onSwipeRight={() => console.log("Right")}
-        onSwipeLeft={() => console.log("Left")}
-        config={config}
-        style={{
-          flex: 1,
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          opacity: 0
-        }}
-      >
-
-      </GestureRecognizer>
     </>
   );
 }
 
 function SettingsScreen({ navigation }) {
+  
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={styles.MainMenuButtonText} >
