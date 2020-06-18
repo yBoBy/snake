@@ -1,35 +1,28 @@
-"use strict";
+'use strict';
 
 import * as React from 'react';
-import { useState } from 'react';
-import {
-  Button,
-  View,
-  StyleSheet,
-  Text,
-  Image,
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { block } from 'react-native-reanimated';
+import {useState} from 'react';
+import {Button, View, StyleSheet, Text, Image} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {block} from 'react-native-reanimated';
 import Constants from './Constants';
 import Head from './Head';
-import { SnakeEngine } from './SnakeEngine';
-import { GameLoop } from './GameLoop';
-import { GameEngine } from 'react-native-game-engine';
-import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
-
-
+import {SnakeEngine} from './SnakeEngine';
+import {GameLoop} from './GameLoop';
+import {GameEngine} from 'react-native-game-engine';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 /*Test*/
 
-
-
-function MainMenu({ navigation }) {
+function MainMenu({navigation}) {
   let Image_Http_URL = {};
   return (
-    <View style={{ width: '100%', justifyContent: "center", }}>
-      <Image source={require('./images/MainMenu/snake.gif')} style={{ height: 300, width: 300, alignSelf: "center", margin: 5 }} />
+    <View style={{width: '100%', justifyContent: 'center'}}>
+      {/* <Image
+        source={require('./images/MainMenu/snake.gif')}
+        style={{height: 300, width: 300, alignSelf: 'center', margin: 5}}
+      /> */}
       <Button
         title="Start a New Game"
         onPress={() => navigation.navigate(' ')}
@@ -42,26 +35,22 @@ function MainMenu({ navigation }) {
   );
 }
 
-function GameScreen({ navigation }) {
-
+function GameScreen({navigation}) {
   return (
     <>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={styles.MainMenuButtonText} >
-          {`Placeholder for Games`}
-        </Text>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <Text style={styles.MainMenuButtonText}>{`Placeholder for Games`}</Text>
         <SnakeEngine />
       </View>
     </>
   );
 }
 
-function SettingsScreen({ navigation }) {
-  
+function SettingsScreen({navigation}) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={styles.MainMenuButtonText} >
-        {"Placeholder for Settings"}
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text style={styles.MainMenuButtonText}>
+        {'Placeholder for Settings'}
       </Text>
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
@@ -82,8 +71,8 @@ function MyStack() {
 
 const styles = StyleSheet.create({
   MainMenuButtonText: {
-    fontFamily: "Cochin",
-    textAlign: "auto"
+    fontFamily: 'Cochin',
+    textAlign: 'auto',
   },
 });
 
