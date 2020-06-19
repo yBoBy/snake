@@ -13,7 +13,9 @@ import {Alert} from 'react-native';
 import Settings from './Settings';
 
 const SnakeEngine = props => {
-  const CELL_SIZE = Math.round((Settings.MAX_WIDTH * 0.9) / Settings.GRID_SIZE);
+  const CELL_SIZE = Math.round(
+    (Constants.MAX_WIDTH * 0.9) / Settings.GRID_SIZE,
+  );
   const boardSize = CELL_SIZE * Settings.GRID_SIZE;
   let engine = null;
   let customTimer = new CustomTimer(Settings.gamespeed);
@@ -49,24 +51,24 @@ const SnakeEngine = props => {
             position: Constants.START_POSITION,
             direction: Constants.RIGHT,
             size: CELL_SIZE,
-            xyMax: Constants.GRID_SIZE,
+            xyMax: Settings.GRID_SIZE,
             renderer: <Head />,
           },
-          tail: {
-            elements: [
-              {
-                position: [
-                  Constants.START_POSITION[0] - 1,
-                  Constants.START_POSITION[1],
-                ],
-                orientation: [],
-                containsApple: false,
-                isCornerPart: false,
-              },
-            ],
-            head: null,
-            renderer: <Tail />,
-          },
+          // tail: {
+          //   elements: [
+          //     {
+          //       position: [
+          //         Constants.START_POSITION[0] - 1,
+          //         Constants.START_POSITION[1],
+          //       ],
+          //       orientation: null,
+          //       containsApple: false,
+          //       isCornerPart: false,
+          //     },
+          //   ],
+          //   head: null,
+          //   renderer: <Tail />,
+          // },
           // apple: {
           //   position: null,
           //   renderer: <Apple />,

@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import {
-    View,
-    Button,
-} from 'react-native'
+import {View, Button, Text} from 'react-native';
 
 export default class SettingsScreen extends Component {
   constructor(props) {
@@ -11,13 +8,11 @@ export default class SettingsScreen extends Component {
   }
 
   render() {
-    return(
+    return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={styles.MainMenuButtonText}>
-          {'Placeholder for Settings'}
-        </Text>
+        <Text>{'Placeholder for Settings'}</Text>
         <Button title="Go back" onPress={() => navigation.goBack()} />
       </View>
-    )
-  }   
+    );
+  }
 }

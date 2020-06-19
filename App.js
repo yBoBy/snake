@@ -11,7 +11,7 @@ import Head from './Head';
 import {SnakeEngine} from './SnakeEngine';
 import {GameLoop} from './GameLoop';
 import {GameEngine} from 'react-native-game-engine';
-import {SettingsScreen} from './SettingsScreen';
+import SettingsScreen from './SettingsScreen';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 /*Test*/
