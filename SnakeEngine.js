@@ -10,6 +10,7 @@ import CustomTimer from './CustomTimer';
 import {GameEngine} from 'react-native-game-engine';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import {Alert} from 'react-native';
+import Settings from './Settings';
 
 const SnakeEngine = props => {
   const CELL_SIZE = Math.round(
@@ -17,11 +18,11 @@ const SnakeEngine = props => {
   );
   const boardSize = CELL_SIZE * Constants.GRID_SIZE;
   let engine = null;
-  let customTimer = new CustomTimer(Constants.gamespeed);
+  let customTimer = new CustomTimer(Settings.gamespeed);
   const [running, setRunning] = useState(true);
 
   const gestureConfig = {
-    velocityThreshold: 0.3,
+    velocityThreshold: 0.1,
     directionalOffsetThreshold: 80,
   };
 
