@@ -5,6 +5,7 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
   let tail = entities.tail;
   let apple = entities.apple;
   let xyMax = entities.head.xyMax;
+  tail.head = head;
 
   const checkCollision = (posA, posB) => {
     if (posA[0] === posB[0] && posA[1] === posB[1]) {
@@ -38,6 +39,9 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
     }
   }
 
+  //Move Tail
+  tail.head = head;
+
   //Move head
   head.position = moveElement(head.position, head.direction);
 
@@ -52,15 +56,12 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
     head.position = moveElement(head.position, head.direction, true);
   }
 
-  //Move Tail
-  //tail.head = head;
-
-  //Check if head hits its own tails
-
   //Check if head hits apple
   // if (checkCollision(head.position, apple.position)) {
   //   //TODO: Grow
   // }
+
+  //Check if head hits its own tails
 
   return entities;
 };

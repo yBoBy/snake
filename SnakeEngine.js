@@ -48,16 +48,27 @@ const SnakeEngine = props => {
         systems={[GameLoop]}
         entities={{
           head: {
-            position: [0, 5],
+            position: Constants.START_POSITION,
             direction: Constants.RIGHT,
             size: CELL_SIZE,
             xyMax: Constants.GRID_SIZE,
             renderer: <Head />,
           },
-          // tail: {
-          //   position: [],
-          //   renderer: <Tail />,
-          // },
+          tail: {
+            elements: [
+              {
+                position: [
+                  Constants.START_POSITION[0] - 1,
+                  Constants.START_POSITION[1],
+                ],
+                orientation: [],
+                containsApple: false,
+                isCornerPart: false,
+              },
+            ],
+            head: null,
+            renderer: <Tail />,
+          },
           // apple: {
           //   position: null,
           //   renderer: <Apple />,
