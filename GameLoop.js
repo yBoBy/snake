@@ -25,16 +25,16 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
   };
 
   if (events.length) {
-    for (e of events) {
-      if (e.type === 'right' && head.direction !== Constants.LEFT) {
-        head.direction = Constants.RIGHT;
-      } else if (e.type === 'left' && head.direction !== Constants.RIGHT) {
-        head.direction = Constants.LEFT;
-      } else if (e.type === 'up' && head.direction !== Constants.DOWN) {
-        head.direction = Constants.UP;
-      } else if (e.type === 'down' && head.direction !== Constants.UP) {
-        head.direction = Constants.DOWN;
-      }
+    e = events.pop();
+    console.log(e);
+    if (e.type === 'right' && head.direction !== Constants.LEFT) {
+      head.direction = Constants.RIGHT;
+    } else if (e.type === 'left' && head.direction !== Constants.RIGHT) {
+      head.direction = Constants.LEFT;
+    } else if (e.type === 'up' && head.direction !== Constants.DOWN) {
+      head.direction = Constants.UP;
+    } else if (e.type === 'down' && head.direction !== Constants.UP) {
+      head.direction = Constants.DOWN;
     }
   }
 
