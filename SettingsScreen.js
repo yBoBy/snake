@@ -4,7 +4,7 @@ import {
   View,
   Button,
   Text,
-  StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 
 export default class SettingsScreen extends Component {
@@ -43,60 +43,104 @@ export default class SettingsScreen extends Component {
     return (
       <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
         <Text >{'Theme'}</Text>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', width: '100%' }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', width: '100%' }}>
 
           <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
-            <Button
+            <TouchableOpacity
               onPress={() => setColors("dark")}
-              title="Dark"
-            />
+              style={{
+                backgroundColor: 'blue',
+                alignItems: "center",
+              }}
+            >
+              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>DARK</Text>
+            </TouchableOpacity>
           </View>
           <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
-            <Button
+            <TouchableOpacity
               onPress={() => setColors("light")}
-              title="Light"
-            />
+              style={{
+                backgroundColor: 'blue',
+                alignItems: "center",
+              }}
+            >
+              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>LIGHT</Text>
+            </TouchableOpacity>
           </View>
           <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
-            <Button
+            <TouchableOpacity
               onPress={() => setColors("color")}
-              title="Colorful"
-            />
+              style={{
+                backgroundColor: 'blue',
+                alignItems: "center",
+              }}
+            >
+              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>COLORFUL</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
         <Text >{'Gamespeed'}</Text>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around', width: '100%', backgroundColor: 'lightblue', alignItems: 'center' }}>
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start', width: '100%', backgroundColor: 'lightblue' }}>
 
-          <View style={[{flex: 1, margin: 5, backgroundColor: "grey", height: 100}]}>
-            <Button
+          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+            <TouchableOpacity
               onPress={() => setSpeed("1")}
-              title="very slow"
-            />
+              style={{
+                backgroundColor: 'grey',
+                alignItems: "center",
+              }}
+            >
+              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>VERY SLOW</Text>
+            </TouchableOpacity>
           </View>
-          <View style={[{flex: 1, margin: 5, backgroundColor: "grey", height: 100}]}>
-            <Button
+
+          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+            <TouchableOpacity
               onPress={() => setSpeed("2")}
-              title="slow"
-            />
+              style={{
+                backgroundColor: 'grey',
+                justifyContent: "center",
+              }}
+            >
+              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>SLOW</Text>
+            </TouchableOpacity>
           </View>
-          <View style={[{flex: 1, margin: 5, backgroundColor: "grey", height: 100}]}>
-            <Button
+
+          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+            <TouchableOpacity
               onPress={() => setSpeed("3")}
-              title="normal"
-            />
+              style={{
+                backgroundColor: 'grey',
+                alignItems: "center",
+              }}
+            >
+              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>NORMAL</Text>
+            </TouchableOpacity>
           </View>
-          <View style={[{flex: 1, margin: 5, backgroundColor: "grey", height: 100}]}>
-            <Button
+
+          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+            <TouchableOpacity
               onPress={() => setSpeed("4")}
-              title="fast"
-            />
+              style={{
+                backgroundColor: 'grey',
+                alignItems: "center",
+              }}
+            >
+              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>FAST</Text>
+            </TouchableOpacity>
           </View>
-          <View style={[{flex: 1, margin: 5, backgroundColor: "grey", height: 100}]}>
-            <Button
+
+          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+            <TouchableOpacity
               onPress={() => setSpeed("5")}
-              title="very fast"
-            />
+              style={{
+                backgroundColor: 'grey',
+                alignItems: "center"
+              }}
+            >
+              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>VERY FAST</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
