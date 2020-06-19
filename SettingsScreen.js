@@ -42,7 +42,9 @@ export default class SettingsScreen extends Component {
 
     return (
       <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
+
         <Text >{'Theme'}</Text>
+
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', width: '100%' }}>
 
           <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
@@ -53,9 +55,10 @@ export default class SettingsScreen extends Component {
                 alignItems: "center",
               }}
             >
-              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>DARK</Text>
+              <Text style={{ color: 'white', textAlign: 'center', margin: 5 }}>DARK</Text>
             </TouchableOpacity>
           </View>
+
           <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
             <TouchableOpacity
               onPress={() => setColors("light")}
@@ -64,9 +67,10 @@ export default class SettingsScreen extends Component {
                 alignItems: "center",
               }}
             >
-              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>LIGHT</Text>
+              <Text style={{ color: 'white', textAlign: 'center', margin: 5 }}>LIGHT</Text>
             </TouchableOpacity>
           </View>
+
           <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
             <TouchableOpacity
               onPress={() => setColors("color")}
@@ -75,14 +79,15 @@ export default class SettingsScreen extends Component {
                 alignItems: "center",
               }}
             >
-              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>COLORFUL</Text>
+              <Text style={{ color: 'white', textAlign: 'center', margin: 5 }}>COLORFUL</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        <Text >{'Gamespeed'}</Text>
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start', width: '100%', backgroundColor: 'lightblue' }}>
 
+        <Text >{'Gamespeed'}</Text>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', width: '100%', backgroundColor: 'lightblue' }}>
           <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
             <TouchableOpacity
               onPress={() => setSpeed("1")}
@@ -91,7 +96,7 @@ export default class SettingsScreen extends Component {
                 alignItems: "center",
               }}
             >
-              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>VERY SLOW</Text>
+              <Text style={{ color: 'white', textAlign: 'center', margin: 5 }}>VERY SLOW</Text>
             </TouchableOpacity>
           </View>
 
@@ -103,7 +108,7 @@ export default class SettingsScreen extends Component {
                 justifyContent: "center",
               }}
             >
-              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>SLOW</Text>
+              <Text style={{ color: 'white', textAlign: 'center', margin: 5 }}>SLOW</Text>
             </TouchableOpacity>
           </View>
 
@@ -115,7 +120,7 @@ export default class SettingsScreen extends Component {
                 alignItems: "center",
               }}
             >
-              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>NORMAL</Text>
+              <Text style={{ color: 'white', textAlign: 'center', margin: 5 }}>NORMAL</Text>
             </TouchableOpacity>
           </View>
 
@@ -127,7 +132,7 @@ export default class SettingsScreen extends Component {
                 alignItems: "center",
               }}
             >
-              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>FAST</Text>
+              <Text style={{ color: 'white', textAlign: 'center', margin: 5 }}>FAST</Text>
             </TouchableOpacity>
           </View>
 
@@ -139,12 +144,11 @@ export default class SettingsScreen extends Component {
                 alignItems: "center"
               }}
             >
-              <Text style={{color: 'white', textAlign: 'center', margin: 5}}>VERY FAST</Text>
+              <Text style={{ color: 'white', textAlign: 'center', margin: 5 }}>VERY FAST</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
-      
     );
   }
 }
