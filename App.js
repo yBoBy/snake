@@ -39,7 +39,6 @@ function GameScreen({navigation}) {
   return (
     <>
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={styles.MainMenuButtonText}>{`Placeholder for Games`}</Text>
         <SnakeEngine />
       </View>
     </>
@@ -64,7 +63,11 @@ function MyStack() {
     <Stack.Navigator initialRouteName="Main Menu">
       <Stack.Screen name="Main Menu" component={MainMenu} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
-      <Stack.Screen name=" " component={GameScreen} />
+      <Stack.Screen
+        name=" "
+        component={GameScreen}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 }

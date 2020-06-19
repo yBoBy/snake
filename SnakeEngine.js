@@ -4,25 +4,32 @@ import {useState} from 'react';
 import Constants from './Constants';
 import {GameLoop} from './GameLoop';
 import Head from './Head';
+import Tail from './Tail';
+import Apple from './Apple';
 import CustomTimer from './CustomTimer';
 import {GameEngine} from 'react-native-game-engine';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import {Alert} from 'react-native';
 
 const SnakeEngine = props => {
-  //let boardSize = Constants.GRID_SIZE * Constants.CELL_SIZE;
   const CELL_SIZE = Math.round(
     (Constants.MAX_WIDTH * 0.9) / Constants.GRID_SIZE,
   );
-  let boardSize = CELL_SIZE * Constants.GRID_SIZE;
-  console.log(CELL_SIZE);
-  console.log(boardSize);
-  console.log(Constants.MAX_WIDTH);
+  const boardSize = CELL_SIZE * Constants.GRID_SIZE;
   let engine = null;
-  let customTimer = new CustomTimer(500);
+  let customTimer = new CustomTimer(Constants.gamespeed);
+  const [running, setRunning] = useState(true);
 
-  const config = {
+  const gestureConfig = {
     velocityThreshold: 0.3,
     directionalOffsetThreshold: 80,
+  };
+
+  const onEvent = e => {
+    if (e.type === 'game-over') {
+      Alert.alert('Game Over!');
+      setRunning(false);
+    }
   };
 
   return (
@@ -41,24 +48,33 @@ const SnakeEngine = props => {
         entities={{
           head: {
             position: [0, 5],
-            xSpeed: 1,
-            ySpeed: 0,
+            direction: Constants.RIGHT,
             size: CELL_SIZE,
+            xyMax: Constants.GRID_SIZE,
             renderer: <Head />,
           },
+          // tail: {
+          //   position: [],
+          //   renderer: <Tail />,
+          // },
+          // apple: {
+          //   position: null,
+          //   renderer: <Apple />,
+          // },
         }}
         timer={customTimer}
+        running={running}
+        onEvent={onEvent}
       />
       <GestureRecognizer
         onSwipeRight={() => engine.dispatch({type: 'right'})}
         onSwipeLeft={() => engine.dispatch({type: 'left'})}
         onSwipeUp={() => engine.dispatch({type: 'up'})}
         onSwipeDown={() => engine.dispatch({type: 'down'})}
-        config={config}
+        config={gestureConfig}
         style={{
           flex: 1,
           position: 'absolute',
-          //backgroundColor: 'red',
           top: 0,
           right: 0,
           bottom: 0,
