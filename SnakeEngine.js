@@ -17,6 +17,7 @@ const SnakeEngine = props => {
     (Constants.MAX_WIDTH * 0.9) / Settings.GRID_SIZE,
   );
   const boardSize = CELL_SIZE * Settings.GRID_SIZE;
+  let startPosition = {...Constants.START_POSITION};
   let engine = null;
   let customTimer = new CustomTimer(Settings.gamespeed);
   const [running, setRunning] = useState(true);
@@ -48,27 +49,33 @@ const SnakeEngine = props => {
         systems={[GameLoop]}
         entities={{
           head: {
-            position: Constants.START_POSITION,
+            position: startPosition,
             direction: Constants.RIGHT,
             size: CELL_SIZE,
             xyMax: Settings.GRID_SIZE,
             renderer: <Head />,
           },
-          // tail: {
-          //   elements: [
-          //     {
-          //       position: [
-          //         Constants.START_POSITION[0] - 1,
-          //         Constants.START_POSITION[1],
-          //       ],
-          //       orientation: null,
-          //       containsApple: false,
-          //       isCornerPart: false,
-          //     },
-          //   ],
-          //   head: null,
-          //   renderer: <Tail />,
-          // },
+          tail: {
+            elements: [
+              {
+                position: [startPosition[0] - 1, startPosition[1]],
+                orientation: null,
+                containsApple: false,
+                isCornerPart: false,
+              },
+              {
+                position: [startPosition[0] - 2, startPosition[1]],
+                orientation: null,
+                containsApple: false,
+                isCornerPart: false,
+              },
+            ],
+            size: CELL_SIZE,
+            headPosition: null,
+            headDirection: null,
+            boardSize: boardSize,
+            renderer: <Tail />,
+          },
           // apple: {
           //   position: null,
           //   renderer: <Apple />,
