@@ -7,4 +7,7 @@ export default (Settings = {
     colorSnakeEyes: 'blue',
     colorSnakeTail: 'yellow',
     colorSnakeApple: 'red',
+
+    GRID_SIZE: 15,
+    //CELL_SIZE: (MAX_WIDTH * 0.9) / GRID_SIZE,
 });

@@ -6,7 +6,4 @@ export default (Constants = {
   LEFT: [-1, 0],
   UP: [0, -1],
   DOWN: [0, 1],
-
-  GRID_SIZE: 15,
-  //CELL_SIZE: (MAX_WIDTH * 0.9) / GRID_SIZE,
 });

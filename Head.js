@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 import Constants from './Constants';
+import Settings from './Settings';
 
 export default class Head extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ export default class Head extends Component {
           style={{
             width: this.props.size,
             height: this.props.size,
-            backgroundColor: Constants.colorSnakeHead,
+            backgroundColor: Settings.colorSnakeHead,
             position: 'absolute',
             left: x * this.props.size,
             top: y * this.props.size,
@@ -51,7 +52,7 @@ export default class Head extends Component {
             style={{
               width: this.props.size / 5,
               height: this.props.size / 5,
-              backgroundColor: Constants.colorSnakeEyes,
+              backgroundColor: Settings.colorSnakeEyes,
               left: leftEye1,
               top: topEye1,
             }}
@@ -60,7 +61,7 @@ export default class Head extends Component {
             style={{
               width: this.props.size / 5,
               height: this.props.size / 5,
-              backgroundColor: Constants.colorSnakeEyes,
+              backgroundColor: Settings.colorSnakeEyes,
               left: leftEye2,
               top: topEye2,
             }}

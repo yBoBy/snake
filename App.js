@@ -11,6 +11,7 @@ import Head from './Head';
 import {SnakeEngine} from './SnakeEngine';
 import {GameLoop} from './GameLoop';
 import {GameEngine} from 'react-native-game-engine';
+import {SettingsScreen} from './SettingsScreen';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 /*Test*/
@@ -45,14 +46,13 @@ function GameScreen({navigation}) {
   );
 }
 
-function SettingsScreen({navigation}) {
+function showSettingsScreen({navigation}) {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={styles.MainMenuButtonText}>
-        {'Placeholder for Settings'}
-      </Text>
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
+    <>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <SettingsScreen />
+      </View>
+    </>
   );
 }
 
@@ -62,7 +62,7 @@ function MyStack() {
   return (
     <Stack.Navigator initialRouteName="Main Menu">
       <Stack.Screen name="Main Menu" component={MainMenu} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="Settings" component={showSettingsScreen} />
       <Stack.Screen
         name=" "
         component={GameScreen}
