@@ -13,10 +13,8 @@ import {Alert} from 'react-native';
 import Settings from './Settings';
 
 const SnakeEngine = props => {
-  const CELL_SIZE = Math.round(
-    (Constants.MAX_WIDTH * 0.9) / Constants.GRID_SIZE,
-  );
-  const boardSize = CELL_SIZE * Constants.GRID_SIZE;
+  const CELL_SIZE = Math.round((Settings.MAX_WIDTH * 0.9) / Settings.GRID_SIZE);
+  const boardSize = CELL_SIZE * Settings.GRID_SIZE;
   let engine = null;
   let customTimer = new CustomTimer(Settings.gamespeed);
   const [running, setRunning] = useState(true);
