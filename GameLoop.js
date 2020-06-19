@@ -5,7 +5,6 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
   let tail = entities.tail;
   let apple = entities.apple;
   let xyMax = entities.head.xyMax;
-  //tail.head = head;
 
   const checkCollision = (posA, posB) => {
     if (posA[0] === posB[0] && posA[1] === posB[1]) {
@@ -27,7 +26,6 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
 
   if (events.length) {
     e = events.pop();
-    console.log(e);
     if (e.type === 'right' && head.direction !== Constants.LEFT) {
       head.direction = Constants.RIGHT;
     } else if (e.type === 'left' && head.direction !== Constants.RIGHT) {
@@ -41,9 +39,14 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
 
   //Move Tail
   //tail.head = head;
+  let preMoveHeadPos = JSON.stringify(Object.values(head.position));
+  let preMoveHeadDir = JSON.stringify(Object.values(head.direction));
+  console.log('TEST 1: ' + preMoveHeadPos);
 
   //Move head
   head.position = moveElement(head.position, head.direction);
+
+  console.log('TEST 2: ' + preMoveHeadPos);
 
   //Check if head hits gamefield borders
   if (
@@ -54,6 +57,9 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
   ) {
     dispatch({type: 'game-over'});
     head.position = moveElement(head.position, head.direction, true);
+  } else {
+    tail.headPosition = preMoveHeadPos;
+    tail.headDirection = preMoveHeadDir;
   }
 
   //Check if head hits apple
