@@ -16,8 +16,8 @@ export default (Constants = {
 
   // Gridsize configuration
   GRIDSIZE_SMALL: 10,
-  GRIDSIZE_MEDIUM: 16,
-  DRIDSIZE_LARGE: 30,
+  GRIDSIZE_MEDIUM: 15,
+  GRIDSIZE_LARGE: 30,
 
   // Button configuration
   COLOR_NAVIGATION_BAR: '#264E36',
