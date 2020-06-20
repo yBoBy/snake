@@ -25,10 +25,10 @@ function MainMenu({ navigation }) {
 
   return (
     <View style={{ width: '100%', flex: 1, justifyContent: "flex-start", backgroundColor: Constants.COLOR_GENERAL_BACKGROUND, padding: 5 }}>
-      {/* <Image
+      <Image
         source={require('./images/MainMenu/snake.gif')}
-        style={{height: 300, width: 300, alignSelf: 'center', margin: 5}}
-      /> */}
+        style={{maxHeight: '50%', resizeMode: 'contain', alignSelf: 'center', margin: 5}}
+      />
       <View style={[{
         margin: 5,
         backgroundColor: Constants.COLOR_BUTTON_COLOR,
