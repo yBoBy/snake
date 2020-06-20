@@ -1,5 +1,16 @@
 import Constants from './Constants';
 
+const moveElement = (element, direction, reverse = false) => {
+  if (!reverse) {
+    element[0] += direction[0];
+    element[1] += direction[1];
+  } else {
+    element[0] -= direction[0];
+    element[1] -= direction[1];
+  }
+  return element;
+};
+
 const GameLoop = (entities, {touches, dispatch, events}) => {
   let head = entities.head;
   let tail = entities.tail;
@@ -13,16 +24,10 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
     false;
   };
 
-  const moveElement = (element, direction, reverse = false) => {
-    if (!reverse) {
-      element[0] += direction[0];
-      element[1] += direction[1];
-    } else {
-      element[0] -= direction[0];
-      element[1] -= direction[1];
-    }
-    return element;
-  };
+  //Save Head position before position or direction changes
+
+  let preMoveHeadPos = Object.values(head.position);
+  let preMoveHeadDir = Object.values(head.direction);
 
   if (events.length) {
     e = events.pop();
@@ -37,16 +42,8 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
     }
   }
 
-  //Move Tail
-  //tail.head = head;
-  let preMoveHeadPos = JSON.stringify(Object.values(head.position));
-  let preMoveHeadDir = JSON.stringify(Object.values(head.direction));
-  console.log('TEST 1: ' + preMoveHeadPos);
-
   //Move head
   head.position = moveElement(head.position, head.direction);
-
-  console.log('TEST 2: ' + preMoveHeadPos);
 
   //Check if head hits gamefield borders
   if (
@@ -58,6 +55,7 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
     dispatch({type: 'game-over'});
     head.position = moveElement(head.position, head.direction, true);
   } else {
+    //Move Tails
     tail.headPosition = preMoveHeadPos;
     tail.headDirection = preMoveHeadDir;
   }
