@@ -1,4 +1,4 @@
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 export default (Constants = {
   MAX_WIDTH: Dimensions.get('screen').width,
   MAX_HEIGHT: Dimensions.get('screen').height,
@@ -14,6 +14,37 @@ export default (Constants = {
   GAMESPEED_FAST: 400,
   GAMESPEED_VERY_FAST: 100,
 
-  COLOR_NAVIGATION_BAR: '#00539C',
-  COLOR_GENERAL_BACKGROUND: 'black',
+  // Gridsize configuration
+  GRIDSIZE_SMALL: 10,
+  GRIDSIZE_MEDIUM: 16,
+  DRIDSIZE_LARGE: 30,
+
+  // Button configuration
+  COLOR_NAVIGATION_BAR: '#264E36',
+  COLOR_GENERAL_BACKGROUND: "#797B3A",
+  COLOR_BUTTON_COLOR: '#00539C',
+  COLOR_BUTTON_BORDER: '#F0EAD6',
+  COLOR_BUTTON_TEXT: '#E08119',
+
+  // Colors for DARK mode
+  // NOTE: for correct behaviour at least GRID hsa to be different between modes
+  COLOR_DARK_SNAKE_HEAD: '#264E36',
+  COLOR_DARK_SNAKE_TAIL: '#566E56',
+  COLOR_DARK_SNAKE_EYES: '#343148',
+  COLOR_DARK_SNAKE_APPLE: '#9E1030',
+  COLOR_DARK_GRID: '#121212',
+
+  // Colors for LIGHT mode
+  COLOR_LIGHT_SNAKE_HEAD: '#32CD32',
+  COLOR_LIGHT_SNAKE_TAIL: '#3CB371',
+  COLOR_LIGHT_SNAKE_EYES: '#2F4F4F',
+  COLOR_LIGHT_SNAKE_APPLE: '#9E1030',
+  COLOR_LIGHT_GRID: '#F5F5F5',
+
+  // Colors for COLORFUL mode
+  COLOR_COLOR_SNAKE_HEAD: '#264E36',
+  COLOR_COLOR_SNAKE_TAIL: '#566E56',
+  COLOR_COLOR_SNAKE_EYES: '#343148',
+  COLOR_COLOR_SNAKE_APPLE: '#9E1030',
+  COLOR_COLOR_GRID: '#7CFC00',
 });
