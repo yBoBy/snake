@@ -1,4 +1,5 @@
 import Constants from './Constants';
+import _ from 'underscore';
 
 const moveElement = (element, direction, reverse = false) => {
   if (!reverse) {
@@ -57,7 +58,13 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
   } else {
     //Move Tails
     tail.headPosition = preMoveHeadPos;
-    tail.headDirection = preMoveHeadDir;
+    tail.headDirection = Object.values(head.direction);
+
+    if (!_.isEqual(preMoveHeadDir, Object.values(head.direction))) {
+      tail.elements[0].isCornerPart = true;
+    } else {
+      tail.elements[0].isCornerPart = false;
+    }
   }
 
   //Check if head hits apple

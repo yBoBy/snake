@@ -11,6 +11,7 @@ import {GameEngine} from 'react-native-game-engine';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import {Alert} from 'react-native';
 import Settings from './Settings';
+import _ from 'underscore';
 
 const SnakeEngine = props => {
   const CELL_SIZE = Math.round(
@@ -59,15 +60,27 @@ const SnakeEngine = props => {
             elements: [
               {
                 position: [startPosition[0] - 1, startPosition[1]],
-                orientation: null,
+                form: null,
                 containsApple: false,
-                isCornerPart: false,
+                direction: Constants.RIGHT,
               },
               {
                 position: [startPosition[0] - 2, startPosition[1]],
-                orientation: null,
+                form: null,
                 containsApple: false,
-                isCornerPart: false,
+                direction: Constants.RIGHT,
+              },
+              {
+                position: [startPosition[0] - 3, startPosition[1]],
+                form: null,
+                containsApple: false,
+                direction: Constants.RIGHT,
+              },
+              {
+                position: [startPosition[0] - 4, startPosition[1]],
+                form: null,
+                containsApple: false,
+                direction: Constants.RIGHT,
               },
             ],
             size: CELL_SIZE,
