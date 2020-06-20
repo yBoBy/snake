@@ -45,7 +45,7 @@ const SnakeEngine = props => {
           width: boardSize,
           height: boardSize,
           flex: null,
-          backgroundColor: '#ffffff',
+          backgroundColor: Settings.colorGridBackGround,
         }}
         systems={[GameLoop]}
         entities={{
