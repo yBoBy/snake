@@ -9,10 +9,8 @@ export default class Head extends Component {
   }
   render() {
     const x = this.props.position[0];
-    console.log('x: ' + x);
-
     const y = this.props.position[1];
-    console.log('y: ' + y);
+    //console.log(`Head pos after-move: [${x}, ${y}]`);
     let leftEye1 = 0;
     let leftEye2 = 0;
     let topEye1 = 0;
