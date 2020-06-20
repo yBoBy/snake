@@ -8,5 +8,7 @@ export default (Settings = {
   colorSnakeTail: 'yellow',
   colorSnakeApple: 'red',
 
+  colorNavigationBar: 'red',
+
   GRID_SIZE: 15,
 });

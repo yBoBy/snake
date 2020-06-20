@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Settings from './Settings';
+import Constants from './Constants'
 
 import {
   View,
-  Button,
   Text,
   TouchableOpacity,
 } from 'react-native';
@@ -17,41 +18,50 @@ export default class SettingsScreen extends Component {
   render() {
     function setColors(arg) {
       if (arg === "dark") {
-        console.log("dark");
+        console.log('New Colortheme: dark');
+        Settings.colorNavigationBar = Constants.COLOR_NAVIGATION_BAR;
       } else if (arg === "light") {
-        console.log("light");
+        Settings.colorGridBackGround = 'green'
       } else if (arg === "color") {
-        console.log("color");
+        
       }
 
     }
 
     function setSpeed(arg) {
       if (arg === "1") {
-        console.log("very slow speed");
+        Settings.gamespeed = Constants.GAMESPEED_VERY_SLOW;
+        console.log("New Gamespeed: " + Settings.gamespeed);
       } else if (arg === "2") {
-        console.log("sloow speed");
+        Settings.gamespeed = Constants.GAMESPEED_SLOW;
+        console.log("New Gamespeed: " + Settings.gamespeed);
       } else if (arg === "3") {
-        console.log("normal speed");
+        Settings.gamespeed = Constants.GAMESPEED_NORMAL;
+        console.log("New Gamespeed: " + Settings.gamespeed);
       } else if (arg === "4") {
-        console.log("fast speed");
+        Settings.gamespeed = Constants.GAMESPEED_FAST;
+        console.log("New Gamespeed: " + Settings.gamespeed);
       } else if (arg === "5") {
-        console.log("very fast speed");
+        Settings.gamespeed = Constants.GAMESPEED_VERY_FAST;
+        console.log("New Gamespeed: " + Settings.gamespeed);
       }
     }
 
     return (
-      <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
+      <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center', backgroundColor: "grey"}}>
 
-        <Text >{'Theme'}</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{'Theme'}</Text>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', width: '100%' }}>
 
-          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+          <View style={{ flex: 1, margin: 5}}>
             <TouchableOpacity
               onPress={() => setColors("dark")}
               style={{
-                backgroundColor: 'blue',
+                borderWidth: 2,
+                borderRadius: 5,
+                borderColor: 'darkgrey',
+                backgroundColor: 'black',
                 alignItems: "center",
               }}
             >
@@ -59,23 +69,29 @@ export default class SettingsScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+          <View style={{ flex: 1, margin: 5}}>
             <TouchableOpacity
               onPress={() => setColors("light")}
               style={{
-                backgroundColor: 'blue',
+                borderWidth: 2,
+                borderRadius: 5,
+                borderColor: 'darkgrey',
+                backgroundColor: 'white',
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: 'white', textAlign: 'center', margin: 5 }}>LIGHT</Text>
+              <Text style={{ color: 'black', textAlign: 'center', margin: 5 }}>LIGHT</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+          <View style={{ flex: 1, margin: 5}}>
             <TouchableOpacity
               onPress={() => setColors("color")}
               style={{
-                backgroundColor: 'blue',
+                borderWidth: 2,
+                borderRadius: 5,
+                borderColor: 'darkgrey',
+                backgroundColor: 'darkviolet',
                 alignItems: "center",
               }}
             >
@@ -85,14 +101,22 @@ export default class SettingsScreen extends Component {
         </View>
 
 
-        <Text >{'Gamespeed'}</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{'Gamespeed'}</Text>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', width: '100%', backgroundColor: 'lightblue' }}>
-          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+        <View style={{ flexDirection: 'row',justifyContent: 'flex-start', width: '100%'}}>
+          <View style={[{
+            flex: 1,
+            margin: 5,
+            backgroundColor: "darkgrey",
+            borderWidth: 2,
+            borderRadius: 5,
+            borderColor: 'darkgrey',
+            alignItems: "center",
+          }]}>
             <TouchableOpacity
               onPress={() => setSpeed("1")}
               style={{
-                backgroundColor: 'grey',
+                backgroundColor: 'darkgrey',
                 alignItems: "center",
               }}
             >
@@ -100,11 +124,19 @@ export default class SettingsScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+          <View style={[{
+            flex: 1,
+            margin: 5,
+            backgroundColor: "darkgrey",
+            borderWidth: 2,
+            borderRadius: 5,
+            borderColor: 'darkgrey',
+            alignItems: "center",
+          }]}>
             <TouchableOpacity
               onPress={() => setSpeed("2")}
               style={{
-                backgroundColor: 'grey',
+                backgroundColor: 'darkgrey',
                 justifyContent: "center",
               }}
             >
@@ -112,11 +144,19 @@ export default class SettingsScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+          <View style={[{
+            flex: 1,
+            margin: 5,
+            backgroundColor: "darkgrey",
+            borderWidth: 2,
+            borderRadius: 5,
+            borderColor: 'darkgrey',
+            alignItems: "center",
+          }]}>
             <TouchableOpacity
               onPress={() => setSpeed("3")}
               style={{
-                backgroundColor: 'grey',
+                backgroundColor: 'darkgrey',
                 alignItems: "center",
               }}
             >
@@ -124,11 +164,19 @@ export default class SettingsScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+          <View style={[{
+            flex: 1,
+            margin: 5,
+            backgroundColor: "darkgrey",
+            borderWidth: 2,
+            borderRadius: 5,
+            borderColor: 'darkgrey',
+            alignItems: "center",
+          }]}>
             <TouchableOpacity
               onPress={() => setSpeed("4")}
               style={{
-                backgroundColor: 'grey',
+                backgroundColor: 'darkgrey',
                 alignItems: "center",
               }}
             >
@@ -136,11 +184,19 @@ export default class SettingsScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={[{ flex: 1, margin: 5, backgroundColor: "grey" }]}>
+          <View style={[{
+            flex: 1,
+            margin: 5,
+            backgroundColor: "darkgrey",
+            borderWidth: 2,
+            borderRadius: 5,
+            borderColor: 'darkgrey',
+            alignItems: "center",
+          }]}>
             <TouchableOpacity
               onPress={() => setSpeed("5")}
               style={{
-                backgroundColor: 'grey',
+                backgroundColor: 'darkgrey',
                 alignItems: "center"
               }}
             >
