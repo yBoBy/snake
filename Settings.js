@@ -1,14 +1,14 @@
-import {Dimensions} from 'react-native';
+import Constants from './Constants'
+
 export default (Settings = {
-  colorGridBackGround: 'green',
   gamespeed: 500,
 
-  colorSnakeHead: 'orange',
-  colorSnakeEyes: 'blue',
-  colorSnakeTail: 'yellow',
-  colorSnakeApple: 'red',
-
-  colorNavigationBar: 'red',
+  // default color scheme = light
+  colorSnakeHead: Constants.COLOR_LIGHT_SNAKE_HEAD,
+  colorSnakeTail: Constants.COLOR_LIGHT_SNAKE_TAIL,
+  colorSnakeEyes: Constants.COLOR_LIGHT_SNAKE_EYES,
+  colorSnakeApple: Constants.COLOR_LIGHT_SNAKE_APPLE,
+  colorGridBackGround: Constants.COLOR_LIGHT_GRID,
 
   GRID_SIZE: 15,
 });
