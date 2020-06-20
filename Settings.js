@@ -10,5 +10,5 @@ export default (Settings = {
   colorSnakeApple: Constants.COLOR_LIGHT_SNAKE_APPLE,
   colorGridBackGround: Constants.COLOR_LIGHT_GRID,
 
-  GRID_SIZE: 15,
+  GRID_SIZE: Constants.GRIDSIZE_MEDIUM,
 });
