@@ -1,5 +1,6 @@
 import Constants from './Constants';
 import _ from 'underscore';
+import Settings from './Settings';
 
 const moveElement = (element, direction, reverse = false) => {
   if (!reverse) {
@@ -19,10 +20,20 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
   let xyMax = entities.head.xyMax;
 
   const checkCollision = (posA, posB) => {
+    posA = Object.values(posA);
+    console.log(posA);
+    console.log(posB);
     if (posA[0] === posB[0] && posA[1] === posB[1]) {
       return true;
     }
     false;
+  };
+
+  const randomPosition = () => {
+    let x = Math.floor(Math.random() * Settings.GRID_SIZE);
+    let y = Math.floor(Math.random() * Settings.GRID_SIZE);
+
+    return [x, y];
   };
 
   //Save Head position before position or direction changes
@@ -68,9 +79,15 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
   }
 
   //Check if head hits apple
-  // if (checkCollision(head.position, apple.position)) {
-  //   //TODO: Grow
-  // }
+  if (checkCollision(head.position, apple.position)) {
+    tail.elements.push({
+      position: null,
+      form: {...tail.elements[tail.elements.length - 1].form},
+      containsApple: false,
+      direction: {...tail.elements[tail.elements.length - 1].direction},
+    });
+    apple.position = randomPosition();
+  }
 
   //Check if head hits its own tails
 

@@ -28,6 +28,13 @@ const SnakeEngine = props => {
     directionalOffsetThreshold: 80,
   };
 
+  const getRandomPosition = () => {
+    let x = Math.floor(Math.random() * Settings.GRID_SIZE);
+    let y = Math.floor(Math.random() * Settings.GRID_SIZE);
+
+    return [x, y];
+  };
+
   const onEvent = e => {
     if (e.type === 'game-over') {
       Alert.alert('Game Over!');
@@ -89,10 +96,11 @@ const SnakeEngine = props => {
             boardSize: boardSize,
             renderer: <Tail />,
           },
-          // apple: {
-          //   position: null,
-          //   renderer: <Apple />,
-          // },
+          apple: {
+            position: getRandomPosition(),
+            size: CELL_SIZE,
+            renderer: <Apple />,
+          },
         }}
         timer={customTimer}
         running={running}
