@@ -1,10 +1,14 @@
 # Used Packages
 - react-native-game-engine
-[//]: # (Which of these have been added by us? Both?)
+<!---
+    Which of these have been added by us? Both?)
+-->
 - react-native-gesture-handler
 - react-native-swipe-gestures
-[//]: # (Not sure if there is a difference at this point :D)
-- @react-navigation /// react-navigation
+<!---
+    Which of these have been added by us? Both?)
+-->
+- react-navigation
 - underscore
 
 # Installation
