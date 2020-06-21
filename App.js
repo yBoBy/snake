@@ -24,7 +24,7 @@ function MainMenu({ navigation }) {
   StatusBar.setHidden(true);
 
   return (
-    <View style={{ width: '100%', flex: 1, justifyContent: "flex-start", backgroundColor: Constants.COLOR_GENERAL_BACKGROUND, padding: 5 }}>
+    <View style={{ flex: 1, justifyContent: "flex-start", backgroundColor: Constants.COLOR_GENERAL_BACKGROUND, padding: 5 }}>
       <Image
         source={require('./images/MainMenu/snake.gif')}
         style={{maxHeight: '50%', resizeMode: 'contain', alignSelf: 'center', margin: 5}}
