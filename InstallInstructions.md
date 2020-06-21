@@ -13,3 +13,16 @@
 ` $ npm install -S react-native-swipe-gestures `
 
 ` $ npm install -S underscore `
+
+```java
+/*
+For animated GIF support add following lines to
+./android/app/build.gradle in
+dependencies {
+    ...
+    *add lines here*
+}
+*/
+implementation 'com.facebook.fresco:fresco:2.0.0'
+implementation 'com.facebook.fresco:animated-gif:2.0.0'
+```
