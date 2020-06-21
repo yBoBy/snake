@@ -1,15 +1,15 @@
 'use strict';
 import * as React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import Constants from './Constants';
-import {GameLoop} from './GameLoop';
+import { GameLoop } from './GameLoop';
 import Head from './Head';
 import Tail from './Tail';
 import Apple from './Apple';
 import CustomTimer from './CustomTimer';
-import {GameEngine} from 'react-native-game-engine';
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-import {Alert} from 'react-native';
+import { GameEngine } from 'react-native-game-engine';
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
+import { Alert, View } from 'react-native';
 import Settings from './Settings';
 import _ from 'underscore';
 
@@ -18,7 +18,7 @@ const SnakeEngine = props => {
     (Constants.MAX_WIDTH * 0.9) / Settings.GRID_SIZE,
   );
   const boardSize = CELL_SIZE * Settings.GRID_SIZE;
-  let startPosition = {...Constants.START_POSITION};
+  let startPosition = { ...Constants.START_POSITION };
   let engine = null;
   let customTimer = new CustomTimer(Settings.gamespeed);
   const [running, setRunning] = useState(true);
@@ -43,7 +43,8 @@ const SnakeEngine = props => {
   };
 
   return (
-    <>
+    <View style={{backgroundColor: Constants.COLOR_GENERAL_BACKGROUND, flex: 1, justifyContent: "center", width: '100%', alignItems: 'center'}}>
+      <>
       <GameEngine
         ref={ref => {
           engine = ref;
@@ -107,10 +108,10 @@ const SnakeEngine = props => {
         onEvent={onEvent}
       />
       <GestureRecognizer
-        onSwipeRight={() => engine.dispatch({type: 'right'})}
-        onSwipeLeft={() => engine.dispatch({type: 'left'})}
-        onSwipeUp={() => engine.dispatch({type: 'up'})}
-        onSwipeDown={() => engine.dispatch({type: 'down'})}
+        onSwipeRight={() => engine.dispatch({ type: 'right' })}
+        onSwipeLeft={() => engine.dispatch({ type: 'left' })}
+        onSwipeUp={() => engine.dispatch({ type: 'up' })}
+        onSwipeDown={() => engine.dispatch({ type: 'down' })}
         config={gestureConfig}
         style={{
           flex: 1,
@@ -123,7 +124,8 @@ const SnakeEngine = props => {
         }}
       />
     </>
+    </View>
   );
 };
 
-export {SnakeEngine};
+export { SnakeEngine };
