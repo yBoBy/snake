@@ -43,87 +43,87 @@ const SnakeEngine = props => {
   };
 
   return (
-    <View style={{backgroundColor: Constants.COLOR_GENERAL_BACKGROUND, flex: 1, justifyContent: "center", width: '100%', alignItems: 'center'}}>
+    <View style={{ backgroundColor: Constants.COLOR_GENERAL_BACKGROUND, flex: 1, justifyContent: "center", width: '100%', alignItems: 'center' }}>
       <>
-      <GameEngine
-        ref={ref => {
-          engine = ref;
-        }}
-        style={{
-          width: boardSize,
-          height: boardSize,
-          flex: null,
-          backgroundColor: Settings.colorGridBackGround,
-        }}
-        systems={[GameLoop]}
-        entities={{
-          head: {
-            position: startPosition,
-            direction: Constants.RIGHT,
-            size: CELL_SIZE,
-            xyMax: Settings.GRID_SIZE,
-            renderer: <Head />,
-          },
-          tail: {
-            elements: [
-              {
-                position: [startPosition[0] - 1, startPosition[1]],
-                form: null,
-                containsApple: false,
-                direction: Constants.RIGHT,
-              },
-              {
-                position: [startPosition[0] - 2, startPosition[1]],
-                form: null,
-                containsApple: false,
-                direction: Constants.RIGHT,
-              },
-              {
-                position: [startPosition[0] - 3, startPosition[1]],
-                form: null,
-                containsApple: false,
-                direction: Constants.RIGHT,
-              },
-              {
-                position: [startPosition[0] - 4, startPosition[1]],
-                form: null,
-                containsApple: false,
-                direction: Constants.RIGHT,
-              },
-            ],
-            size: CELL_SIZE,
-            headPosition: null,
-            headDirection: null,
-            boardSize: boardSize,
-            renderer: <Tail />,
-          },
-          apple: {
-            position: getRandomPosition(),
-            size: CELL_SIZE,
-            renderer: <Apple />,
-          },
-        }}
-        timer={customTimer}
-        running={running}
-        onEvent={onEvent}
-      />
-      <GestureRecognizer
-        onSwipeRight={() => engine.dispatch({ type: 'right' })}
-        onSwipeLeft={() => engine.dispatch({ type: 'left' })}
-        onSwipeUp={() => engine.dispatch({ type: 'up' })}
-        onSwipeDown={() => engine.dispatch({ type: 'down' })}
-        config={gestureConfig}
-        style={{
-          flex: 1,
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          opacity: 0,
-        }}
-      />
-    </>
+        <GameEngine
+          ref={ref => {
+            engine = ref;
+          }}
+          style={{
+            width: boardSize,
+            height: boardSize,
+            flex: null,
+            backgroundColor: Settings.colorGridBackGround,
+          }}
+          systems={[GameLoop]}
+          entities={{
+            head: {
+              position: startPosition,
+              direction: Constants.RIGHT,
+              size: CELL_SIZE,
+              xyMax: Settings.GRID_SIZE,
+              renderer: <Head />,
+            },
+            tail: {
+              elements: [
+                {
+                  position: [startPosition[0] - 1, startPosition[1]],
+                  form: null,
+                  containsApple: false,
+                  direction: Constants.RIGHT,
+                },
+                {
+                  position: [startPosition[0] - 2, startPosition[1]],
+                  form: null,
+                  containsApple: false,
+                  direction: Constants.RIGHT,
+                },
+                {
+                  position: [startPosition[0] - 3, startPosition[1]],
+                  form: null,
+                  containsApple: false,
+                  direction: Constants.RIGHT,
+                },
+                {
+                  position: [startPosition[0] - 4, startPosition[1]],
+                  form: null,
+                  containsApple: false,
+                  direction: Constants.RIGHT,
+                },
+              ],
+              size: CELL_SIZE,
+              headPosition: null,
+              headDirection: null,
+              boardSize: boardSize,
+              renderer: <Tail />,
+            },
+            apple: {
+              position: getRandomPosition(),
+              size: CELL_SIZE,
+              renderer: <Apple />,
+            },
+          }}
+          timer={customTimer}
+          running={running}
+          onEvent={onEvent}
+        />
+        <GestureRecognizer
+          onSwipeRight={() => engine.dispatch({ type: 'right' })}
+          onSwipeLeft={() => engine.dispatch({ type: 'left' })}
+          onSwipeUp={() => engine.dispatch({ type: 'up' })}
+          onSwipeDown={() => engine.dispatch({ type: 'down' })}
+          config={gestureConfig}
+          style={{
+            flex: 1,
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            opacity: 0,
+          }}
+        />
+      </>
     </View>
   );
 };
