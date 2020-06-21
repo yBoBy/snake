@@ -1,8 +1,7 @@
 # Used Packages
 - react-native-game-engine
-<!--- Which of these have been added by us? Both?) -->
-- react-native-gesture-handler
-- react-native-swipe-gestures
+- react-native-gesture-handler      <!--- Which of these have been added by us? Both? -->
+- react-native-swipe-gestures       <!--- Which of these have been added by us? Both? -->
 - react-navigation
 - underscore
 
