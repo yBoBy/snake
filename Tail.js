@@ -200,12 +200,12 @@ export default (Tail = props => {
         cur.direction = Object.values(props.headDirection);
       }
     }
-
+    /*
     console.log("Form @ Tail: " + cur.form);
     console.log("Direction @ Tail: " + cur.direction + " from part :" + );
     console.log("StepSizeY: " + stepSizeY);
     console.log("StepSizeX: " + stepSizeX);
-
+*/
     tailList.push(
       <View
         key={'Part1.' + i}
