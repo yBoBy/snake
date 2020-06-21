@@ -13,21 +13,21 @@ const moveElement = (element, direction, reverse = false) => {
   return element;
 };
 
-const GameLoop = (entities, {touches, dispatch, events}) => {
+const GameLoop = (entities, { touches, dispatch, events }) => {
   let head = entities.head;
   let tail = entities.tail;
   let apple = entities.apple;
   let xyMax = entities.head.xyMax;
 
-  const checkCollision = (posA, posB) => {
-    posA = Object.values(posA);
-    console.log(posA);
-    console.log(posB);
-    if (posA[0] === posB[0] && posA[1] === posB[1]) {
+  const checkCollisionWithHead = (customPosition) => {
+    posHead = Object.values(head.position);
+
+    if (customPosition[0] === posHead[0] && customPosition[1] === posHead[1]) {
       return true;
     }
     false;
   };
+
 
   const randomPosition = () => {
     let x = Math.floor(Math.random() * Settings.GRID_SIZE);
@@ -64,7 +64,7 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
     head.position[1] >= xyMax ||
     head.position[1] < 0
   ) {
-    dispatch({type: 'game-over'});
+    dispatch({ type: 'game-over' });
     head.position = moveElement(head.position, head.direction, true);
   } else {
     //Move Tails
@@ -79,19 +79,29 @@ const GameLoop = (entities, {touches, dispatch, events}) => {
   }
 
   //Check if head hits apple
-  if (checkCollision(head.position, apple.position)) {
+  if (checkCollisionWithHead(apple.position)) {
     tail.elements.push({
       position: null,
-      form: {...tail.elements[tail.elements.length - 1].form},
+      form: { ...tail.elements[tail.elements.length - 1].form },
       containsApple: false,
-      direction: {...tail.elements[tail.elements.length - 1].direction},
+      direction: { ...tail.elements[tail.elements.length - 1].direction },
     });
     apple.position = randomPosition();
   }
 
+
   //Check if head hits its own tails
+  for (element of tail.elements) {
+    if (element.position !== null) {
+      if (checkCollisionWithHead(Object.values(element.position))) {
+        dispatch({ type: 'game-over' });
+        break;
+      }
+    }
+  }
+
 
   return entities;
 };
 
-export {GameLoop};
+export { GameLoop };
