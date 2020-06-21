@@ -1,3 +1,5 @@
+// class copied and slightly modified from repo react-native-game-engine
+
 export default class CustomTimer {
   constructor(gametick) {
     this.subscribers = [];

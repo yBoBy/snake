@@ -53,6 +53,7 @@ export default class Head extends Component {
 
     return (
       <>
+        {/* //Until 65 from: https://youtu.be/kIe2KHTSJTk?list=PL_ykw1txRSwNDFdKT3DqUvH_qXB2VaZBH */}
         <View
           style={{
             width: this.props.size,

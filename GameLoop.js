@@ -41,6 +41,7 @@ const GameLoop = (entities, { touches, dispatch, events }) => {
   let preMoveHeadPos = Object.values(head.position);
   let preMoveHeadDir = Object.values(head.direction);
 
+  //Until 56 from: https://youtu.be/kIe2KHTSJTk?list=PL_ykw1txRSwNDFdKT3DqUvH_qXB2VaZBH
   if (events.length) {
     e = events.pop();
     if (e.type === 'right' && head.direction !== Constants.LEFT) {
@@ -59,6 +60,7 @@ const GameLoop = (entities, { touches, dispatch, events }) => {
 
   //Check if head hits gamefield borders
   if (
+    //Until 71 from: https://youtu.be/kIe2KHTSJTk?list=PL_ykw1txRSwNDFdKT3DqUvH_qXB2VaZBH
     head.position[0] < 0 ||
     head.position[0] >= xyMax ||
     head.position[1] >= xyMax ||

@@ -108,6 +108,7 @@ const SnakeEngine = props => {
           onEvent={onEvent}
         />
         <GestureRecognizer
+          // Until 126 from: https://youtu.be/kIe2KHTSJTk?list=PL_ykw1txRSwNDFdKT3DqUvH_qXB2VaZBH
           onSwipeRight={() => engine.dispatch({ type: 'right' })}
           onSwipeLeft={() => engine.dispatch({ type: 'left' })}
           onSwipeUp={() => engine.dispatch({ type: 'up' })}

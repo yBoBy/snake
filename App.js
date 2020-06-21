@@ -9,7 +9,7 @@ import { SnakeEngine } from './SnakeEngine';
 import SettingsScreen from './SettingsScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-/*Test*/
+// basic Structure of Main Menu inspired from https://reactnavigation.org/docs/stack-navigator/
 
 function MainMenu({ navigation }) {
   // hide Statusbar when in game
