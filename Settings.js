@@ -2,6 +2,8 @@ import Constants from './Constants'
 
 export default (Settings = {
   gamespeed: 500,
+  step: 0,
+  totalSteps: 0,
 
   // default color scheme = light
   colorSnakeHead: Constants.COLOR_LIGHT_SNAKE_HEAD,

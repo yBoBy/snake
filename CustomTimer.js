@@ -1,3 +1,5 @@
+import Settings from './Settings';
+
 export default class CustomTimer {
   constructor(gametick) {
     this.subscribers = [];
@@ -7,12 +9,42 @@ export default class CustomTimer {
   }
 
   loop = timestamp => {
-    if (this.loopId && timestamp - this.lasttick >= this.gametick) {
-      this.subscribers.forEach(callback => {
+    // if (this.loopId && timestamp - this.lasttick >= this.gametick) {
+    //   this.subscribers.forEach(callback => {
+    //     this.lasttick = timestamp;
+    //     callback(timestamp);
+    //   });
+    // }
+
+    if (this.loopId) {
+
+      //console.log("Delta Time @ CustomTimer: " + (timestamp - this.lasttick));
+      console.log("Time left: " + (timestamp - this.lasttick));
+      if (timestamp - this.lasttick >= this.gametick) {
         this.lasttick = timestamp;
+        console.log("Gametick over");
+        if (Settings.step > 0) {
+          Settings.step = 0;
+        }
+        Settings.totalSteps = this.gametick / 16;
+        //Settings.step = 1;
+        console.log("Initialize new steps:" + Settings.totalSteps);
+
+      }
+      else {
+        while (Settings.step * 16 < timestamp - this.lasttick) {
+
+          Settings.step += 1;
+        }
+      }
+
+      this.subscribers.forEach(callback => {
+
         callback(timestamp);
       });
     }
+
+
 
     this.loopId = requestAnimationFrame(this.loop);
   };

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View} from 'react-native';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import Constants from './Constants';
 import Settings from './Settings';
 
@@ -11,45 +11,54 @@ export default class Head extends Component {
     const x = this.props.position[0];
     const y = this.props.position[1];
 
+    let stepSizeX = 0;
+    let stepSizeY = 0;
+    if (Settings.step > 0) {
+      stepSizeX = (this.props.size / Settings.totalSteps) * Settings.step;
+      stepSizeY = (this.props.size / Settings.totalSteps) * Settings.step;
+    }
+
     let leftEye1 = 0;
     let leftEye2 = 0;
     let topEye1 = 0;
     let topEye2 = 0;
 
-    let tailAddWidthHeight = this.props.size / 2;
 
-    let tailAddLeft = null;
-    let tailAddTop = null;
+
+
 
     if (this.props.direction === Constants.UP) {
       leftEye1 = '20%';
       leftEye2 = '60%';
       topEye1 = '20%';
       topEye2 = 0;
-      tailAddLeft = x * this.props.size + 0.25 * this.props.size;
-      tailAddTop = y * this.props.size + this.props.size;
+      stepSizeX = 0;
+      stepSizeY *= -1;
     } else if (this.props.direction === Constants.DOWN) {
       leftEye1 = '20%';
       leftEye2 = '60%';
       topEye1 = '60%';
       topEye2 = '40%';
-      tailAddLeft = x * this.props.size + 0.25 * this.props.size;
-      tailAddTop = y * this.props.size - 0.5 * this.props.size;
+      stepSizeX = 0;
     } else if (this.props.direction === Constants.RIGHT) {
       leftEye1 = '60%';
       leftEye2 = '60%';
       topEye1 = '20%';
       topEye2 = '40%';
-      tailAddLeft = x * this.props.size - 0.5 * this.props.size;
-      tailAddTop = y * this.props.size + 0.25 * this.props.size;
+      stepSizeY = 0;
     } else if (this.props.direction === Constants.LEFT) {
       leftEye1 = '20%';
       leftEye2 = '20%';
       topEye1 = '20%';
       topEye2 = '40%';
-      tailAddLeft = x * this.props.size + this.props.size;
-      tailAddTop = y * this.props.size + 0.25 * this.props.size;
+      stepSizeY = 0;
+      stepSizeX *= -1;
     }
+
+    //console.log("Step size X: " + stepSizeX);
+    //console.log("Step size Y: " + stepSizeY);
+
+    //Settings.step += 1;
 
     return (
       <>
@@ -59,8 +68,8 @@ export default class Head extends Component {
             height: this.props.size,
             backgroundColor: Settings.colorSnakeHead,
             position: 'absolute',
-            left: x * this.props.size,
-            top: y * this.props.size,
+            left: x * this.props.size + stepSizeX,
+            top: y * this.props.size + stepSizeY,
           }}>
           <View
             style={{
@@ -81,16 +90,6 @@ export default class Head extends Component {
             }}
           />
         </View>
-        {/* <View
-          style={{
-            position: 'absolute',
-            width: tailAddWidthHeight,
-            height: tailAddWidthHeight,
-            backgroundColor: Settings.colorSnakeTail,
-            left: tailAddLeft,
-            top: tailAddTop,
-          }}
-        /> */}
       </>
     );
   }

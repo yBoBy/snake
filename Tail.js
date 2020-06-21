@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View} from 'react-native';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import Constants from './Constants';
 import Settings from './Settings';
 import _ from 'underscore';
@@ -22,23 +22,39 @@ export default (Tail = props => {
     height: props.size * 0.5,
   };
 
+  let stepSizeX = 0;
+  let stepSizeY = 0;
+  if (Settings.step > 0) {
+    stepSizeX = (props.size / Settings.totalSteps) * Settings.step;
+    stepSizeY = (props.size / Settings.totalSteps) * Settings.step;
+  }
+
   const getFormFromHead = (headDirection, current) => {
-    if (current.form === null) {
+    // console.log("current @ Tail.getFormFromhead: " + JSON.stringify(current));
+    // console.log("headDirection @ Tail.getFormFromhead: " + headDirection);
+
+    if (current.form == null) {
       return LEFT_RIGHT;
     }
     if (_.isEqual(headDirection, Constants.UP)) {
+      stepSizeX = 0;
+      stepSizeY *= -1;
       if (_.isEqual(current.direction, Constants.UP)) return TOP_BOTTOM;
       if (_.isEqual(current.direction, Constants.LEFT)) return TOP_RIGHT;
       if (_.isEqual(current.direction, Constants.RIGHT)) return TOP_LEFT;
     } else if (_.isEqual(headDirection, Constants.DOWN)) {
+      stepSizeX = 0;
       if (_.isEqual(current.direction, Constants.DOWN)) return TOP_BOTTOM;
       if (_.isEqual(current.direction, Constants.LEFT)) return BOTTOM_RIGHT;
       if (_.isEqual(current.direction, Constants.RIGHT)) return BOTTOM_LEFT;
     } else if (_.isEqual(headDirection, Constants.LEFT)) {
+      stepSizeY = 0;
+      stepSizeX *= -1;
       if (_.isEqual(current.direction, Constants.LEFT)) return LEFT_RIGHT;
       if (_.isEqual(current.direction, Constants.UP)) return BOTTOM_LEFT;
       if (_.isEqual(current.direction, Constants.DOWN)) return TOP_LEFT;
     } else if (_.isEqual(headDirection, Constants.RIGHT)) {
+      stepSizeY = 0;
       if (_.isEqual(current.direction, Constants.RIGHT)) return LEFT_RIGHT;
       if (_.isEqual(current.direction, Constants.UP)) return BOTTOM_RIGHT;
       if (_.isEqual(current.direction, Constants.DOWN)) return TOP_RIGHT;
@@ -46,12 +62,14 @@ export default (Tail = props => {
   };
 
   const calculateViewParameters = (basePosition, form = null) => {
-    let leftNoPadding = basePosition[0] * props.size;
-    let topNoPadding = basePosition[1] * props.size;
+
+
+    let leftNoPadding = basePosition[0] * props.size + stepSizeX;
+    let topNoPadding = basePosition[1] * props.size + stepSizeY;
     let leftPadding = leftNoPadding + props.size * 0.25;
     let topPadding = topNoPadding + props.size * 0.25;
-    let part1 = {left: null, top: null, size: null};
-    let part2 = {left: null, top: null, size: null};
+    let part1 = { left: null, top: null, size: null };
+    let part2 = { left: null, top: null, size: null };
 
     switch (form) {
       case TOP_LEFT:
@@ -104,11 +122,11 @@ export default (Tail = props => {
         break;
       default:
         console.log(
-          'Critical Error @ Tail.calculateViewParameters SWITCH_CASE',
+          'Critical Error @ Tail.calculateViewParameters SWITCH_CASE for basePosition: ' + basePosition + ", form: " + form
         );
     }
 
-    return {part1: part1, part2: part2};
+    return { part1: part1, part2: part2 };
   };
 
   let tailList = [];
@@ -119,17 +137,21 @@ export default (Tail = props => {
     let prev = null;
     //Restliche Tail-Elemente
     if (i > 0) {
+
       prev = props.elements[i - 1];
-      cur.isCornerPart = prev.isCornerPart;
-      cur.position = prev.position;
+      if (Settings.step === 0) {
+        console.log("Previous @ Tail: " + JSON.stringify(prev));
+        cur.position = prev.position;
+      }
       if (prev.form === null) {
         //Set LEFT_RIGHT (Horizontal), because form of initial element is 'null'
         cur.form = LEFT_RIGHT;
       } else {
         cur.form = prev.form;
       }
-      cur.containsApple = prev.containsApple;
-
+      if (Settings.step === 0) {
+        cur.containsApple = prev.containsApple;
+      }
       partValues = calculateViewParameters(cur.position, cur.form);
     }
 
@@ -138,17 +160,29 @@ export default (Tail = props => {
       if (props.headDirection === null) {
         props.headDirection = Object.values(Constants.RIGHT);
       }
+      if (Settings.step === 0) {
+        console.log("Head position @ Tail: " + Object.values(props.headPosition));
+        cur.position = props.headPosition;
+        console.log("Cur @ Tail:" + JSON.stringify(cur));
+      }
 
-      cur.position = props.headPosition;
+
 
       cur.form = getFormFromHead(props.headDirection, cur);
+
+      if (Settings.step === 0) {
+        console.log("Cur.Form @ Tail: " + cur.form);
+        console.log("Cur.Position @ Tail: " + Object.values(cur.position));
+      }
 
       partValues = calculateViewParameters(
         Object.values(cur.position),
         cur.form,
       );
 
-      cur.direction = Object.values(props.headDirection);
+      if (Settings.step === 0) {
+        cur.direction = Object.values(props.headDirection);
+      }
     }
 
     tailList.push(
@@ -177,7 +211,7 @@ export default (Tail = props => {
     );
   }
   return (
-    <View style={{width: props.boardsize, height: props.boardsize}}>
+    <View style={{ width: props.boardsize, height: props.boardsize }}>
       {tailList}
     </View>
   );

@@ -1,6 +1,7 @@
 import Constants from './Constants';
 import _ from 'underscore';
 import Settings from './Settings';
+import { GameEngine } from 'react-native-game-engine';
 
 const moveElement = (element, direction, reverse = false) => {
   if (!reverse) {
@@ -36,10 +37,6 @@ const GameLoop = (entities, { touches, dispatch, events }) => {
     return [x, y];
   };
 
-  //Save Head position before position or direction changes
-
-  let preMoveHeadPos = Object.values(head.position);
-  let preMoveHeadDir = Object.values(head.direction);
 
   if (events.length) {
     e = events.pop();
@@ -54,52 +51,57 @@ const GameLoop = (entities, { touches, dispatch, events }) => {
     }
   }
 
-  //Move head
-  head.position = moveElement(head.position, head.direction);
+  //Only change position if time of next gametick is reached
+  console.log("Step Value @ GameLoop: " + Settings.step)
+  if (Settings.step === 0) {
+    console.log("Next step");
+    //Save Head position before position or direction changes
+    let preMoveHeadPos = Object.values(head.position);
 
-  //Check if head hits gamefield borders
-  if (
-    head.position[0] < 0 ||
-    head.position[0] >= xyMax ||
-    head.position[1] >= xyMax ||
-    head.position[1] < 0
-  ) {
-    dispatch({ type: 'game-over' });
-    head.position = moveElement(head.position, head.direction, true);
-  } else {
-    //Move Tails
-    tail.headPosition = preMoveHeadPos;
-    tail.headDirection = Object.values(head.direction);
 
-    if (!_.isEqual(preMoveHeadDir, Object.values(head.direction))) {
-      tail.elements[0].isCornerPart = true;
+
+
+    //Move head
+    head.position = moveElement(head.position, head.direction);
+
+    //Check if head hits gamefield borders
+    if (
+      head.position[0] < 0 ||
+      head.position[0] >= xyMax ||
+      head.position[1] >= xyMax ||
+      head.position[1] < 0
+    ) {
+      //setRunning(false);
+      dispatch({ type: 'game-over' });
+      head.position = moveElement(head.position, head.direction);
     } else {
-      tail.elements[0].isCornerPart = false;
+      //Move Tail
+      tail.headPosition = preMoveHeadPos;
+      tail.headDirection = Object.values(head.direction);
     }
-  }
 
-  //Check if head hits apple
-  if (checkCollisionWithHead(apple.position)) {
-    tail.elements.push({
-      position: null,
-      form: { ...tail.elements[tail.elements.length - 1].form },
-      containsApple: false,
-      direction: { ...tail.elements[tail.elements.length - 1].direction },
-    });
-    apple.position = randomPosition();
-  }
+    //Check if head hits apple
+    if (checkCollisionWithHead(apple.position)) {
+      tail.elements.push({
+        position: null,
+        form: { ...tail.elements[tail.elements.length - 1].form },
+        containsApple: false,
+        direction: { ...tail.elements[tail.elements.length - 1].direction },
+      });
+      apple.position = randomPosition();
+    }
 
+    //Check if head hits its own tails
 
-  //Check if head hits its own tails
-  for (element of tail.elements) {
-    if (element.position !== null) {
-      if (checkCollisionWithHead(Object.values(element.position))) {
-        dispatch({ type: 'game-over' });
-        break;
+    for (element of tail.elements) {
+      if (element.position !== null) {
+        if (checkCollisionWithHead(Object.values(element.position))) {
+          dispatch({ type: 'game-over' });
+          break;
+        }
       }
     }
   }
-
 
   return entities;
 };
