@@ -42,3 +42,8 @@ Warum auch immer stürzt die App teilweise manchmal ab.
 Warum genau dieser Fehler auftritt, ist uns nicht bekannt.
 Bis jetzt hat es immer geholfen die App neu zu laden. (doppel r im Emulator / Reload über Developer Menü)
 Wenn Debugging aktiviert ist, tritt der Fehler wahrscheinlich immer auf, also am besten kein Debug anmachen.
+
+
+# Falls alle Stricke reißen:
+Github repository:
+https://github.com/yBoBy/snake
