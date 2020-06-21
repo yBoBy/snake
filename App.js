@@ -1,20 +1,12 @@
 'use strict';
 
 import * as React from 'react';
-import { useState } from 'react';
-import { Button, View, StyleSheet, Text, Image, StatusBar } from 'react-native';
+import { View, Text, Image, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { block } from 'react-native-reanimated';
 import Constants from './Constants';
-import Head from './Head';
 import { SnakeEngine } from './SnakeEngine';
-import { GameLoop } from './GameLoop';
-import { GameEngine } from 'react-native-game-engine';
 import SettingsScreen from './SettingsScreen';
-import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
-import { NavigationActions } from 'react-navigation';
-import Settings from './Settings'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 /*Test*/
@@ -27,7 +19,7 @@ function MainMenu({ navigation }) {
     <View style={{ flex: 1, justifyContent: "flex-start", backgroundColor: Constants.COLOR_GENERAL_BACKGROUND, padding: 5 }}>
       <Image
         source={require('./images/MainMenu/snake.gif')}
-        style={{maxHeight: '50%', resizeMode: 'contain', alignSelf: 'center', margin: 5}}
+        style={{ maxHeight: '50%', resizeMode: 'contain', alignSelf: 'center', margin: 5 }}
       />
       <View style={[{
         margin: 5,
