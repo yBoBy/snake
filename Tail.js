@@ -24,10 +24,7 @@ export default (Tail = props => {
 
   let stepSizeX = 0;
   let stepSizeY = 0;
-  if (Settings.step > 0) {
-    stepSizeX = (props.size / Settings.totalSteps) * Settings.step;
-    stepSizeY = (props.size / Settings.totalSteps) * Settings.step;
-  }
+
 
   const getFormFromHead = (headDirection, current) => {
     // console.log("current @ Tail.getFormFromhead: " + JSON.stringify(current));
@@ -62,6 +59,7 @@ export default (Tail = props => {
   };
 
   const calculateViewParameters = (basePosition, form = null) => {
+
 
 
     let leftNoPadding = basePosition[0] * props.size + stepSizeX;
@@ -133,6 +131,10 @@ export default (Tail = props => {
   let partValues = null;
 
   for (let i = props.elements.length - 1; i >= 0; i--) {
+    if (Settings.step > 0) {
+      stepSizeX = (props.size / Settings.totalSteps) * Settings.step;
+      stepSizeY = (props.size / Settings.totalSteps) * Settings.step;
+    }
     let cur = props.elements[i];
     let prev = null;
     //Restliche Tail-Elemente
@@ -151,6 +153,20 @@ export default (Tail = props => {
       }
       if (Settings.step === 0) {
         cur.containsApple = prev.containsApple;
+      }
+      if (_.isEqual(cur.direction, Constants.UP)) {
+        stepSizeX = 0;
+        stepSizeY *= -1;
+      }
+      else if (_.isEqual(cur.direction, Constants.DOWN)) {
+        stepSizeX = 0;
+      }
+      else if (_.isEqual(cur.direction, Constants.LEFT)) {
+        stepSizeY = 0;
+        stepSizeX *= -1;
+      }
+      else if (_.isEqual(cur.direction, Constants.RIGHT)) {
+        stepSizeY = 0;
       }
       partValues = calculateViewParameters(cur.position, cur.form);
     }
@@ -184,6 +200,11 @@ export default (Tail = props => {
         cur.direction = Object.values(props.headDirection);
       }
     }
+
+    console.log("Form @ Tail: " + cur.form);
+    console.log("Direction @ Tail: " + cur.direction + " from part :" + );
+    console.log("StepSizeY: " + stepSizeY);
+    console.log("StepSizeX: " + stepSizeX);
 
     tailList.push(
       <View
