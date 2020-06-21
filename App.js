@@ -1,7 +1,7 @@
 'use strict';
 
 import * as React from 'react';
-import { View, Text, Image, StatusBar } from 'react-native';
+import { View, Text, Image, StatusBar, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Constants from './Constants';
@@ -18,8 +18,13 @@ function MainMenu({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: "flex-start", backgroundColor: Constants.COLOR_GENERAL_BACKGROUND, padding: 5 }}>
       <Image
-        source={require('./images/MainMenu/snake.gif')}
-        style={{ maxHeight: '50%', resizeMode: 'contain', alignSelf: 'center', margin: 5 }}
+        // source: https://giphy.com/gifs/1990s-shohQj1Ju9fJC
+        source={require('./images/MainMenu/giphy.gif')}
+        style={{
+          maxHeight: '50%',
+          resizeMode: 'contain',
+          alignSelf: 'center',
+        }}
       />
       <View style={[{
         margin: 5,
