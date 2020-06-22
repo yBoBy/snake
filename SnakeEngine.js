@@ -93,7 +93,7 @@ const SnakeEngine = props => {
               ],
               size: CELL_SIZE,
               headPosition: null,
-              headDirection: null,
+              headDirection: Constants.RIGHT,
               boardSize: boardSize,
               renderer: <Tail />,
             },

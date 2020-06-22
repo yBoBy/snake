@@ -136,15 +136,19 @@ export default (Tail = props => {
     //Tail-Element direkt nach Kopf
     else {
       if (props.headDirection === null) {
-        props.headDirection = Object.values(Constants.RIGHT);
+        props.headDirection = Constants.RIGHT;
       }
 
-      cur.position = props.headPosition;
+      if (props.headPosition === null) {
+        cur.position = Object.values(Constants.START_POSITION);
+      } else {
+        cur.position = props.headPosition;
+      }
 
       cur.form = getFormFromHead(props.headDirection, cur);
 
       partValues = calculateViewParameters(
-        Object.values(cur.position),
+        cur.position,
         cur.form,
       );
 
